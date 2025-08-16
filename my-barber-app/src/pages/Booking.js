@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Booking() {
   const [total, setTotal] = useState(0);
@@ -7,6 +8,7 @@ function Booking() {
   const addToTotal = (amount) => {
     setTotal(prevTotal => Math.max(prevTotal + amount, 0));
   };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -105,7 +107,7 @@ function Booking() {
 
       <hr id="booking-divider-bottom" />
       <p id="total-display">The total cost would be ${total}</p>
-      <button id="continue-button" disabled={!cutType}>Continue to time booking!</button>
+      <button id="continue-button" type="button" disabled={!cutType} onClick={() => navigate("/timeBook")}>Continue to time booking!</button>
     </>
   );
 }
