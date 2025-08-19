@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 function Booking() {
   const [total, setTotal] = useState(0);
@@ -107,7 +107,8 @@ function Booking() {
 
       <hr id="booking-divider-bottom" />
       <p id="total-display">The total cost would be ${total}</p>
-      <button id="continue-button" type="button" disabled={!cutType} onClick={() => navigate("/timeBook")}>Continue to time booking!</button>
+      
+      <button id="continue-button" type="button" disabled={!cutType} onClick={() => navigate("/timeBook", { state: { total } })}>Continue to time booking!</button>
     </>
   );
 }
