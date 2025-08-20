@@ -85,5 +85,22 @@ function TimeBook() {
 }
 
 export default TimeBook;
+//
+//const handleBook = async (slot) => {
+//  try {
+//    const docRef = doc(db, "timeslots", slot.date);
+
+  //  const updatedSlots = timeslots
+  //    .filter(s => s.date === slot.date)
+  //    .map(s => s.time === slot.time ? { ...s, booked: true } : s);
+//
+ //   await updateDoc(docRef, { slots: updatedSlots });
+
+   // alert(`Booked ${slot.date} at ${slot.time} ✅`);
+   // setSelectedSlot(null); // reset selection
+//  } catch (err) {
+  //  console.error("Error booking slot:", err);
+//  }
+//};
 
 
