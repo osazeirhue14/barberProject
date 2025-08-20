@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { useLocation, useNavigate } from "react-router-dom";
+//import { Navigate } from "react-router-dom";
 
 function TimeBook() {
   const [timeslots, setTimeslots] = useState([]);
@@ -44,6 +45,23 @@ function TimeBook() {
     }
     return acc;
   }, {});
+  const handleBook = async (slot) => {
+  try {
+    const docRef = doc(db, "timeslots", slot.date);
+
+    const updatedSlots = timeslots
+      .filter(s => s.date === slot.date)
+      .map(s => s.time === slot.time ? { ...s, booked: true } : s);
+
+    await updateDoc(docRef, { slots: updatedSlots });
+
+    alert(`Booked ${slot.date} at ${slot.time} ✅`);
+    setSelectedSlot(null); // reset selection
+  } catch (err) {
+    console.error("Error booking slot:", err);
+  }
+};
+
 
   return (
     <div>
@@ -79,28 +97,24 @@ function TimeBook() {
         </p>
       )}
       <p>Click proceed to book your slot!</p>
-      <button>Proceed</button>
+     <button
+  disabled={!selectedSlot}
+  onClick={async () => {
+    await handleBook(selectedSlot); // wait until slot is booked in Firebase
+    navigate("/payment", { state: { total: state.total, slot: selectedSlot } });
+          // then go to payment page
+  }}
+>
+  Proceed
+</button>
+
+
     </div>
   );
 }
 
 export default TimeBook;
-//
-//const handleBook = async (slot) => {
-//  try {
-//    const docRef = doc(db, "timeslots", slot.date);
 
-  //  const updatedSlots = timeslots
-  //    .filter(s => s.date === slot.date)
-  //    .map(s => s.time === slot.time ? { ...s, booked: true } : s);
-//
- //   await updateDoc(docRef, { slots: updatedSlots });
 
-   // alert(`Booked ${slot.date} at ${slot.time} ✅`);
-   // setSelectedSlot(null); // reset selection
-//  } catch (err) {
-  //  console.error("Error booking slot:", err);
-//  }
-//};
 
 
