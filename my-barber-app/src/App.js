@@ -14,6 +14,7 @@ import Gallery from './pages/Gallery';
 import Login from './pages/Login';
 import TimeBook from './pages/TimeBook';
 import Payment from './pages/Payment';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />    {/* Login page */}
         <Route path="/timeBook" element={<TimeBook />} />    {/* time booking page */}
         <Route path="/payment" element={<Payment />} />
+        <Route path="/signup" element={<SignUp/>}/>
 
       </Routes>
     </div>
