@@ -1,14 +1,44 @@
 import React, { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Booking() {
   const [total, setTotal] = useState(0);
-  const [cutType, setCutType] = useState(""); // track selected cut type
+  const [cutType, setCutType] = useState(""); 
 
-  const addToTotal = (amount) => {
-    setTotal(prevTotal => Math.max(prevTotal + amount, 0));
-  };
+  // Track service counts
+  const [counts, setCounts] = useState({
+    afterShapeup: 0,
+    afterHaircutBeard: 0,
+    afterHaircut: 0,
+    normalShapeup: 0,
+    normalHaircutBeard: 0,
+    normalHaircut: 0,
+  });
+
   const navigate = useNavigate();
+
+  // Update total & counts
+  const updateService = (service, price, change) => {
+    setCounts((prev) => {
+      const newCount = Math.max(prev[service] + change, 0); // no negative counts
+      return { ...prev, [service]: newCount };
+    });
+    setTotal((prev) => Math.max(prev + price * change, 0));
+  };
+
+  // Reset everything when switching between After/Normal Hours
+  const handleCutTypeChange = (newType) => {
+    setCutType(newType);
+    setCounts({
+      afterShapeup: 0,
+      afterHaircutBeard: 0,
+      afterHaircut: 0,
+      normalShapeup: 0,
+      normalHaircutBeard: 0,
+      normalHaircut: 0,
+    });
+    setTotal(0);
+  };
 
   return (
     <>
@@ -19,99 +49,136 @@ function Booking() {
       <hr id="booking-divider-top" />
 
       <form id="booking-form">
-        
         {/* After Hours Section */}
         <label id="after-hours-label">
           <input
-            id="after-hours-radio"
             type="radio"
             name="cutType"
             value="After Hours"
-            onChange={(e) => setCutType(e.target.value)}
+            checked={cutType === "After Hours"}
+            onChange={(e) => handleCutTypeChange(e.target.value)}
           />
           After Hours Haircut
         </label>
 
-        <div id="after-hours-shapeup" className="service-item">
+        <div className="service-item">
           <h5>
-            Shapeup 
-            <button id="after-hours-shapeup-plus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(15)}>+</button>
-            <button id="after-hours-shapeup-minus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(-15)}>-</button>
+            Shapeup ({counts.afterShapeup})
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterShapeup", 15, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterShapeup", 15, -1)}>-</button>
           </h5>
-          <p id="after-hours-shapeup-details">20 Mins - $15</p>
+          <p>20 Mins - $15</p>
         </div>
 
-        <div id="after-hours-haircut-beard" className="service-item">
+        <div className="service-item">
           <h5>
-            Haircut & Beard Trim 
-            <button id="after-hours-haircut-beard-plus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(30)}>+</button>
-            <button id="after-hours-haircut-beard-minus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(-30)}>-</button>
+            Haircut & Beard Trim ({counts.afterHaircutBeard})
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterHaircutBeard", 30, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterHaircutBeard", 30, -1)}>-</button>
           </h5>
-          <p id="after-hours-haircut-beard-details">55 Mins - $30</p>
+          <p>55 Mins - $30</p>
         </div>
 
-        <div id="after-hours-haircut" className="service-item">
+        <div className="service-item">
           <h5>
-            Haircut 
-            <button id="after-hours-haircut-plus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(25)}>+</button>
-            <button id="after-hours-haircut-minus" type="button" disabled={cutType !== "After Hours"} onClick={() => addToTotal(-25)}>-</button>
+            Haircut ({counts.afterHaircut})
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterHaircut", 25, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "After Hours"} 
+              onClick={() => updateService("afterHaircut", 25, -1)}>-</button>
           </h5>
-          <p id="after-hours-haircut-details">40 Mins - $25</p>
+          <p>40 Mins - $25</p>
         </div>
 
         <br />
-        <hr id="booking-divider-middle" />
+        <hr />
 
         {/* Normal Hours Section */}
         <label id="normal-hours-label">
           <input
-            id="normal-hours-radio"
             type="radio"
             name="cutType"
             value="Normal Hours"
-            onChange={(e) => setCutType(e.target.value)}
+            checked={cutType === "Normal Hours"}
+            onChange={(e) => handleCutTypeChange(e.target.value)}
           />
           Normal Hours Haircut
         </label>
 
-        <div id="normal-hours-shapeup" className="service-item">
+        <div className="service-item">
           <h5>
-            Shapeup 
-            <button id="normal-hours-shapeup-plus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(10)}>+</button>
-            <button id="normal-hours-shapeup-minus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(-10)}>-</button>
+            Shapeup ({counts.normalShapeup})
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalShapeup", 10, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalShapeup", 10, -1)}>-</button>
           </h5>
-          <p id="normal-hours-shapeup-details">20 Mins - $10</p>
-          <p id="normal-hours-shapeup-extra">Quick shape up/touch up. No fades/tapers included.</p>
+          <p>20 Mins - $10</p>
         </div>
 
-        <div id="normal-hours-haircut-beard" className="service-item">
+        <div className="service-item">
           <h5>
-            Haircut & Beard Trim 
-            <button id="normal-hours-haircut-beard-plus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(25)}>+</button>
-            <button id="normal-hours-haircut-beard-minus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(-25)}>-</button>
+            Haircut & Beard Trim ({counts.normalHaircutBeard})
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalHaircutBeard", 25, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalHaircutBeard", 25, -1)}>-</button>
           </h5>
-          <p id="normal-hours-haircut-beard-details">60 Mins - $25</p>
-          <p id="normal-hours-haircut-beard-extra">All haircuts + beard shape-up and trim</p>
+          <p>60 Mins - $25</p>
         </div>
 
-        <div id="normal-hours-haircut" className="service-item">
+        <div className="service-item">
           <h5>
-            Haircut 
-            <button id="normal-hours-haircut-plus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(20)}>+</button>
-            <button id="normal-hours-haircut-minus" type="button" disabled={cutType !== "Normal Hours"} onClick={() => addToTotal(-20)}>-</button>
+            Haircut ({counts.normalHaircut})
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalHaircut", 20, 1)}>+</button>
+            <button 
+              type="button" 
+              disabled={cutType !== "Normal Hours"} 
+              onClick={() => updateService("normalHaircut", 20, -1)}>-</button>
           </h5>
-          <p id="normal-hours-haircut-details">40 Mins - $20</p>
-          <p id="normal-hours-haircut-extra">Anything from skin fades, tapers, burst fades etc.</p>
+          <p>40 Mins - $20</p>
         </div>
       </form>
 
-      <hr id="booking-divider-bottom" />
+      <hr />
       <p id="total-display">The total cost would be ${total}</p>
-      
-      <button id="continue-button" type="button" disabled={!cutType} onClick={() => navigate("/timeBook", { state: { total } })}>Continue to time booking!</button>
+
+      <button 
+        type="button" 
+        disabled={!cutType} 
+        onClick={() => navigate("/timeBook", { state: { total, counts } })}
+      >
+        Continue to time booking!
+      </button>
     </>
   );
 }
 
 export default Booking;
-
