@@ -40,15 +40,22 @@ function Home() {
 
     <div id="bottom">
       <h3 id="contact">Contact Me:</h3>
-      <ul>
-        <li id="insta">Instagram: <a href="https://www.instagram.com/kaveblends/?next=%2F">Kaveblends</a></li>
-        <li id="tiktok">Tiktok: <a href="https://www.tiktok.com/@kaveblends?_t=ZN-8z2hPmKHmac&_r=1">KaveBlends</a></li>
-        <li id="phone">Phone number: <a href="tel:+0892571383"> 0892571383</a></li>
-      </ul>
+      
         <div className="logos">
-          <img src="images/insta-logo.png" alt="" id="insta-logo"></img>
-          <img src="images/tiktok-logo.png" alt="" id="tiktok-logo"></img>
-          <img src="images/phone-logo.png" alt="" id="phone-logo"></img>
+          <div className="logo-item">
+            <a id="insta" href="https://www.instagram.com/kaveblends/?next=%2F">Kaveblends</a>
+            <img src="images/insta-logo.png" alt="" id="insta-logo"></img>
+          </div>
+
+          <div className="logo-item">
+            <a id="tiktok" href="https://www.tiktok.com/@kaveblends?_t=ZN-8z2hPmKHmac&_r=1">KaveBlends</a>
+            <img src="images/tiktok-logo.png" alt="" id="tiktok-logo"></img>
+          </div>
+
+          <div className="logo-item">
+            <a id="Phone-Number" href="tel:+0892571383"> 0892571383</a>
+            <img src="images/phone-logo.png" alt="" id="phone-logo"></img>
+          </div>
         </div>    
     </div>
 

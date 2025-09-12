@@ -74,8 +74,4 @@ The project uses **HTML, CSS, and JavaScript** for the front-end, and **Firebase
 ## 🚀 How to Run Locally
 1. Clone this repository:
    ```bash
-<<<<<<< HEAD
    git clone https://github.com/yourusername/barber-booking.git
-=======
-   git clone https://github.com/yourusername/barber-booking.git
->>>>>>> d18678f (homepage css)

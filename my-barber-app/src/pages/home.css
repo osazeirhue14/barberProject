@@ -121,15 +121,15 @@ img {
 }
 
 #tiktok-logo{
-    width: 200px;
+    width: 150px;
 }
 
 #insta-logo{
-    width: 200px;
+    width: 150px;
 }
 
 #phone-logo{
-    width: 200px;
+    width: 150px;
 }
 
 .logos{
@@ -137,4 +137,21 @@ img {
     justify-content: center;
     gap: 200px;
     flex-wrap: wrap;
+    text-align: center;
+    padding: 1%;
+}
+
+.logo-item {
+   display: flex;
+  flex-direction: column;
+  align-items: center; /* keeps the link centered under the logo */   
+}
+
+#insta, #tiktok, #Phone-Number {
+    font-family: "Bebas Neue";
+    font-weight: 500px;
+    font-size: 25px;
+    padding: 3%;
+    text-decoration: none;
+    color: black;
 }
