@@ -42,7 +42,7 @@ function Booking() {
 
   return (
     <>
-      <h1 id="booking-title">KVE Blends</h1>
+      <h1 id="booking-title">KAVE Blends</h1>
       <h2 id="booking-subtitle">Booking Page - Here you can schedule your appointment</h2>
 
       <h4 id="booking-section-title">Please Select between Normal Hour Cuts or After Hour Cuts!</h4>

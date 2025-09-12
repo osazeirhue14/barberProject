@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden; /* stops sideways scrolling */
+}
+
+#title {
+    font-family: "Bebas Neue", sans-serif; 
+    font-style: normal;
+    font-size: 60px;
+    text-align: center;
+    max-width: 100%;
+    word-wrap: break-word; /* prevents giant text pushing page */
+    padding: 2%
+}
+
+#header {
+    background-color: lightslategray;
+    position: relative; /* so absolute children stay inside */
+    overflow: clip;
+    max-width: 100%;
+    z-index: 1;          /* put header “below” links */
+}
+
+#hero {
+    font-weight: 1000;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+    bottom: 25px;
+}
+
+#page-links {
+    font-family: "Bebas Neue";
+    font-size: 30px;
+    position: fixed;
+    top: 6.5%;
+    left: 5%;
+    z-index: 1000;       /* make sure links are on top */
+}
+
+#book{
+    position: fixed;
+    top: 6.5%;
+    right: 10%;
+    font-family: "Bebas Neue";
+    font-size: 40px;
+    background-color: transparent;
+    border: none;
+}
+
+#booking-link {
+    color: black;
+}
+
+#home-link{
+    color: black;
+}
+
+#gallery-link{
+    color: black;
+}
+
+#login-link{
+    color: black;
+}
+
+img {
+    width: 330px;
+    padding-left: 1%;
+    padding-bottom: 3%;
+}
+
+#about {
+    text-align: center;
+    color: lightslategray;
+    font-family: "Bebas Neue";
+    font-size: 50px;
+    padding: 1%
+}
+
+#about-par{
+    text-align: center;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-size: 28px;
+    font-weight: 1000;
+    padding-inline: 3%;
+}
+
+#work{
+    text-align: center;
+    color: lightslategray;
+    font-family: "Bebas Neue";
+    font-size: 50px;
+    padding: 1%
+}
+
+#bottom{
+    background-color: lightslategray;
+}
+
+#contact{
+    text-align: center;
+    color: black;
+    font-family: "Bebas Neue";
+    font-size: 50px;
+    padding: 1%
+}
+
+#tiktok-logo{
+    width: 200px;
+}
+
+#insta-logo{
+    width: 200px;
+}
+
+#phone-logo{
+    width: 200px;
+}
+
+.logos{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    flex-wrap: wrap;
+}
