@@ -1,9 +1,9 @@
 // src/Payment.js
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { db, auth } from "./firebase"; 
 import { addDoc, collection } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import "./Payment.css";
 
 function Payment() {
   const [paymentType, setPaymentType] = useState("");
@@ -13,17 +13,15 @@ function Payment() {
   const navigate = useNavigate();
 
   const handleBooking = async () => {
-    const user = auth.currentUser; // logged-in user
-
+    const user = auth.currentUser;
     if (!user) {
       alert("⚠️ You must be logged in to book an appointment.");
       return;
     }
-
     try {
       await addDoc(collection(db, "bookings"), {
-        userId: user.uid,       // unique ID from Firebase Auth
-        userEmail: user.email,  // store email for convenience
+        userId: user.uid,
+        userEmail: user.email,
         date: slot?.date || "",
         time: slot?.time || "",
         total: total || 0,
@@ -39,15 +37,14 @@ function Payment() {
   };
 
   return (
-    <>
+    <div className="payment-container">
       <h2>Review and confirm your appointment</h2>
-      
       <h3>{slot?.date}</h3>
       <h3>{slot?.time}</h3>
       <h4>Your final total is: {total}$</h4>
       <h5>Please choose a payment method below!</h5>
 
-      <form>
+      <form className="payment-form">
         <label>
           <input
             type="radio"
@@ -58,7 +55,7 @@ function Payment() {
           />
           Pay at Venue
         </label>
-        <br />
+
         <label>
           <input
             type="radio"
@@ -69,32 +66,29 @@ function Payment() {
           />
           Pay by Debit/Credit Card
         </label>
+
+        <h4>Booking Notes</h4>
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Enter your message"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
+
+        <button
+          type="button"
+          className="payment-btn"
+          disabled={!paymentType}
+          onClick={() => {
+            handleBooking();
+            navigate("/");
+          }}
+        >
+          Secure booking!
+        </button>
       </form>
-
-      <br />
-      <h4>Booking Notes</h4>
-      <textarea
-        name="message"
-        rows="4"
-        cols="50"
-        placeholder="Enter your message"
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
-      />
-
-      <br />
-    <button 
-  type="button" 
-  onClick={() => { 
-    handleBooking(); 
-    navigate("/"); 
-  }}  
-  disabled={!paymentType}
->
-  Secure booking!
-</button>
-
-    </>
+    </div>
   );
 }
 

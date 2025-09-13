@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+
+
+#gallery-title {
+    text-align: center;
+    color: lightslategray;
+    font-family: "Bebas Neue";
+    font-size: 50px;
+    padding: 3%
+}
+
+.carousel-container {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-track img {
+  width: calc(100% / 3); /* 3 images visible at a time */
+  height: 300px;
+  object-fit: cover;
+  margin-right: 10px; /* space between images */
+  border-radius: 10px;
+  border: 2px solid lightslategray;
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 28px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+button.prev { left: -20px; }
+button.next { right: -20px; }
+
+button.prev:hover,
+button.next:hover {
+  background: rgba(0,0,0,0.8);
+}
