@@ -20,11 +20,11 @@ function App() {
   return (
     <div>
       {/* Navigation menu with links to different pages */}
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/booking">Booking</Link> |{" "}
-        <Link to="/gallery">Gallery</Link> |{" "}
-        <Link to="/login">Login</Link>
+      <nav id="page-links">
+        <Link to="/" id="home-link">Home</Link> |{" "}
+        <Link to="/booking" id="booking-link">Booking</Link> |{" "}
+        <Link to="/gallery" id="gallery-link">Gallery</Link> |{" "}
+        <Link to="/login" id="login-link">Login</Link>
       </nav>
 
       {/* Define all the routes for the app */}

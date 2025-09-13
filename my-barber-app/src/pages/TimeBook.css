@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+/* Page container */
+.timebook-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Headers */
+.timebook-container h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
+  color: lightslategray;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.timebook-container h3 {
+  font-family: "Alumni Sans Pinstripe", sans-serif;
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Paragraphs */
+.timebook-container p {
+  font-family: "Questrial", sans-serif;
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Back button */
+.back-btn {
+  font-family: "Bebas Neue", sans-serif;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid lightslategray;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background-color: lightslategray;
+  color: white;
+}
+
+/* Timeslot buttons container */
+.timeslot-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Timeslot buttons */
+.timeslot-btn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 2px solid lightslategray;
+  cursor: pointer;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  transition: 0.3s;
+  background-color: white;
+}
+
+.timeslot-btn:hover {
+  background-color: lightgray;
+}
+
+.timeslot-btn.selected {
+  background-color: lightgreen;
+  border-color: darkgreen;
+  color: black;
+}
+
+/* Proceed button */
+.proceed-btn {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  padding: 12px 25px;
+  border-radius: 12px;
+  border: none;
+  background-color: lightslategray;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.proceed-btn:hover:not(:disabled) {
+  background-color: black;
+}
+
+.proceed-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
