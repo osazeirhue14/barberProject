@@ -2,7 +2,7 @@
 # Barber Booking Web App
 
 ## 📌 Project Overview
-This is a group project by **[Your Names Here]** to create a responsive barber booking website where users can:
+This is a group project by Dwayne Kave and Osaze Irhue to create a responsive barber booking website where users can:
 - View the barber's previous work (gallery section).
 - Create an account and log in using **Firebase Authentication**.
 - Book appointments and manage their bookings.
