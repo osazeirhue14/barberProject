@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./booking.css";
+import "./Booking.css";
 
 function Booking() {
   const [total, setTotal] = useState(0);
